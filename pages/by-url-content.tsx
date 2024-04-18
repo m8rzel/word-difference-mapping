@@ -61,33 +61,38 @@ export default function Home() {
     };
 
     return (
-        <div style={{ margin: '20px' }}>
-            <h1>URL Text Comparison Tool</h1>
-            <input
-                type="text"
-                placeholder="Enter first URL here..."
-                value={urlOne}
-                onChange={(e) => setUrlOne(e.target.value)}
-                style={{ width: '100%', marginBottom: '10px' }}
-            />
-            <input
-                type="text"
-                placeholder="Enter second URL here..."
-                value={urlTwo}
-                onChange={(e) => setUrlTwo(e.target.value)}
-                style={{ width: '100%', marginBottom: '10px' }}
-            />
-            <button onClick={handleCompare} disabled={loading} style={{ marginBottom: '10px' }}>
-                {loading ? 'Loading...' : 'Compare'}
-            </button>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <div>
-                {diffResult.map((part: any, index) => (
-                    <span key={index} style={{ backgroundColor: part.added ? 'lightgreen' : part.removed ? 'salmon' : 'transparent' }}>
-                        {part.value}
-                    </span>
-                ))}
-            </div>
-        </div>
+        <div className="m-5">
+    <h1 className="text-2xl font-bold mb-4">URL Text Comparison Tool</h1>
+    <input
+        type="text"
+        placeholder="Enter first URL here..."
+        value={urlOne}
+        onChange={(e) => setUrlOne(e.target.value)}
+        className="w-full mb-3 p-2 border border-gray-300 rounded"
+    />
+    <input
+        type="text"
+        placeholder="Enter second URL here..."
+        value={urlTwo}
+        onChange={(e) => setUrlTwo(e.target.value)}
+        className="w-full mb-3 p-2 border border-gray-300 rounded"
+    />
+    <button
+        onClick={handleCompare}
+        disabled={loading}
+        className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-700 disabled:bg-gray-400 mb-4"
+    >
+        {loading ? 'Loading...' : 'Compare'}
+    </button>
+    {error && <p className="text-red-500">{error}</p>}
+    <div>
+        {diffResult.map((part: any, index) => (
+            <span key={index} className={`inline-block p-1 ${part.added ? 'bg-green-200' : part.removed ? 'bg-red-200' : 'bg-transparent'}`}>
+                {part.value}
+            </span>
+        ))}
+    </div>
+</div>
+
     );
 }
